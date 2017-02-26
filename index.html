@@ -5,9 +5,6 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   </head>
   <body>
     <div class="flexbox-parent">
@@ -16,13 +13,16 @@
       </div>
       <div class="flexbox-item sidebar">
         <input class="search-input" placeholder="Search for Places..." type="text" name="q" data-bind="value: query, valueUpdate: 'keyup'">
-        <ul class="locations" data-bind=" template: {name: 'location', foreach: search}"></ul>
+        <ul class="locations" data-bind="template: {name: 'location', foreach: search}"></ul>
       </div>
       <script type="text/html" id="location">
     <li class="item" data-bind="text: title, click: openInfowindow"></li>
         </div>
       </script>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script>
       var map;
       function defaults() {
@@ -31,7 +31,7 @@
           center: new google.maps.LatLng(36.6798535,-121.6551409),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);  
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);  
       }  
       defaults();
     </script>
