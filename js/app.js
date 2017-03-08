@@ -1,3 +1,12 @@
+var map;
+
+var mapOptions = {
+  zoom: 14,
+  center: new google.maps.LatLng(36.6798535,-121.6551409),
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); 
+
 var Location = function(title, lng, lat) {
   var self = this;
   this.title = title;
@@ -90,8 +99,6 @@ var Location = function(title, lng, lat) {
     title: self.title
   });
 
-  //self.marker.addListener('click', toggleBounce);
-
   function toggleBounce() {
     if (self.marker.getAnimation() !== null) {
       self.marker.setAnimation(null);
@@ -130,7 +137,6 @@ var Location = function(title, lng, lat) {
     this.bounce = function(place) {
       google.maps.event.trigger(self.marker, 'click');
     };
-
   };
 
   // Assigns a click event listener to the marker to open the info window.
@@ -163,3 +169,7 @@ locations.search = ko.dependentObservable(function() {
 }, locations);
 
 ko.applyBindings(locations);
+
+function errorHandling() {
+	alert("Google Maps has failed to load. Please check your internet connection and try again.");
+}
