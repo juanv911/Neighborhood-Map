@@ -1,4 +1,15 @@
 var map;
+var infowindow;
+
+function initMap() {
+    infowindow = new google.maps.InfoWindow();
+    var mapOptions = {
+      zoom: 14,
+      center: new google.maps.LatLng(36.6798535,-121.6551409),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); 
+}
 
 var Location = function(title, lng, lat) {
   var self = this;
@@ -84,8 +95,6 @@ var Location = function(title, lng, lat) {
     });
   }();
 
-  this.infowindow = new google.maps.InfoWindow();
-
   this.marker = new google.maps.Marker({
     position: new google.maps.LatLng(self.lng, self.lat),
     map: map,
@@ -118,8 +127,8 @@ var Location = function(title, lng, lat) {
       locations.locations[i].infowindow.close();
     }
     map.panTo(self.marker.getPosition());
-    self.infowindow.setContent(self.photos + self.comments);
-    self.infowindow.open(map,self.marker);
+    infowindow.setContent(self.photos + self.comments);
+    infowindow.open(map,self.marker);
       
     // Add bouncing animation when a location is clicked
     self.marker.setAnimation(google.maps.Animation.BOUNCE);
