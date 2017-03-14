@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Neighborhood Map</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Neighborhood Map</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <div class="flexbox-parent">
-      <div class="flexbox-item content">
-        <div class="map-canvas" id="map-canvas"></div>
-      </div>
-      <div class="flexbox-item sidebar">
-        <input class="search-input" placeholder="Search for Places..." type="text" name="q" data-bind="value: query, valueUpdate: 'keyup'">
-        <ul class="locations" data-bind="template: {name: 'location', foreach: search}"></ul>
-      </div>
-      <script type="text/html" id="location">
-<li class="item" data-bind="text: title, click: openInfowindow"></li>
+    <div class="app" id="app">
+      <div class="list" id="list">
+        <div class="search" id="search">
+          <input placeholder="Search" class="search-box" id="search-box" data-bind="textInput: query, valueUpdate: 'afterkeydown'" />
         </div>
-      </script>
+        <ul class="results" id="results" data-bind="foreach: search">
+          <li class="place" id="place" data-bind="text: name, click: bounce"></li>
+        </ul>
+      </div>
+      <div class="map" id="map"></div>
     </div>
-    <script src='js/jquery-1.12.0.min.js'></script>
     <script src='js/knockout-3.4.0.js'></script>
-    <script src="js/app.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer onerror="errorHandling()"></script>
+    <script src='js/jquery-1.12.0.min.js'></script>
+    <script src='js/app.js'></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?callback=init&libraries=places" onerror="errorHandling()"></script>
   </body>
 </html>
